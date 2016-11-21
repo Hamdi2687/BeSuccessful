@@ -1,14 +1,15 @@
 package com.mycompany.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.model.implimentation.RandomGenerator;
-
-import org.springframework.ui.ModelMap;
+import com.mycompany.model.UserManagement;
+import com.mycompany.model.entity.User;
+import com.mycompany.model.implimentation.UserManagementImpl;
 
 @Controller
 public class StudentController {
@@ -21,8 +22,9 @@ public class StudentController {
 
 	@RequestMapping(value = "/addStudent", method = RequestMethod.POST)
 	public String addStudent(@ModelAttribute("SpringWeb") Student student, ModelMap model) {
-		RandomGenerator randomGenerator = new RandomGenerator();
-		System.out.println(randomGenerator.getRadomUser());
+		UserManagement userFacade = new UserManagementImpl();
+		for (User user : userFacade.findAll())
+		System.out.println(user);
 		model.addAttribute("name", student.getName());
 		model.addAttribute("age", student.getAge());
 		model.addAttribute("id", student.getId());

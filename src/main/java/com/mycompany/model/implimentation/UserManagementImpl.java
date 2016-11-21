@@ -1,16 +1,21 @@
 package com.mycompany.model.implimentation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mycompany.model.UserManagement;
 import com.mycompany.model.entity.User;
 
 public class UserManagementImpl implements UserManagement{
-
+	
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		RandomGenerator generator = new RandomGenerator();
+		List<User> users = new ArrayList<User>()	;
+		while (users .size()< 200 ){
+			users.add(generator.getRadomUser());
+		}
+		return users;
 	}
 
 	@Override
